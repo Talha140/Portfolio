@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talha Yousaf — Unity Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0e1a;--card:#16162a;--card2:#1e1e35;--border:rgba(255,255,255,0.07);
+  --text:#f0f0ff;--muted:#8888aa;
+  --yellow:#FFD93D;--green:#6BCB77;--pink:#FF6B9D;--blue:#4FC3F7;
+  --orange:#FF8C42;--purple:#B388FF;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
+.page{max-width:960px;margin:0 auto;padding:48px 36px}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;margin-bottom:40px;
+  padding:40px 44px;background:linear-gradient(135deg,#1a1040 0%,#0e1a30 60%,#0e1e18 100%);
+  border-radius:24px;border:1px solid rgba(255,255,255,0.1);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;
+  background:radial-gradient(circle,rgba(107,203,119,0.18) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-40px;left:20%;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(79,195,247,0.12) 0%,transparent 70%);pointer-events:none}
+.eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--green);
+  text-transform:uppercase;margin-bottom:10px}
+.hero-name{font-size:clamp(42px,6vw,72px);font-weight:900;line-height:1;letter-spacing:-1px;color:#fff}
+.hero-name span{color:var(--yellow)}
+.hero-badge{margin-top:14px;display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,217,61,0.12);border:1px solid rgba(255,217,61,0.3);color:var(--yellow);
+  font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:50px}
+.hero-bio{margin-top:14px;color:rgba(240,240,255,0.6);font-size:13px;max-width:440px;line-height:1.8}
+.hero-right{display:flex;flex-direction:column;gap:10px;text-align:right;position:relative;z-index:1}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);border-radius:50px;padding:7px 14px;font-size:12px;
+  color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;justify-content:flex-end;transition:all .2s}
+.chip:hover{background:rgba(107,203,119,0.1);border-color:var(--green);color:var(--green)}
+
+/* BODY */
+.body-grid{display:grid;grid-template-columns:270px 1fr;gap:32px}
+
+/* SEC TITLE */
+.st{font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--muted);
+  margin-bottom:18px;display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace}
+.st .d{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.st::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* SIDEBAR CARD */
+.sc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:18px}
+
+/* SKILLS */
+.sk-cat{margin-bottom:18px}.sk-cat:last-child{margin-bottom:0}
+.sk-lbl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  margin-bottom:8px;font-family:'Space Mono',monospace}
+.sk-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:12px;font-weight:700;padding:5px 12px;border-radius:50px;border:1.5px solid transparent}
+.pg{background:rgba(107,203,119,0.12);color:var(--green);border-color:rgba(107,203,119,0.3)}
+.pb{background:rgba(79,195,247,0.12);color:var(--blue);border-color:rgba(79,195,247,0.3)}
+.pp{background:rgba(179,136,255,0.12);color:var(--purple);border-color:rgba(179,136,255,0.3)}
+.po{background:rgba(255,140,66,0.12);color:var(--orange);border-color:rgba(255,140,66,0.3)}
+.pk{background:rgba(255,107,157,0.12);color:var(--pink);border-color:rgba(255,107,157,0.3)}
+
+/* EDUCATION */
+.edu{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.edu:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.edu-school{font-weight:800;font-size:13px;color:#fff}
+.edu-deg{font-size:12px;color:var(--blue);margin:3px 0;font-weight:600}
+.edu-date{font-size:11px;color:var(--muted);font-family:'Space Mono',monospace}
+.gpa{display:inline-block;margin-top:6px;background:rgba(255,217,61,0.12);
+  border:1px solid rgba(255,217,61,0.3);color:var(--yellow);font-size:11px;font-weight:700;
+  padding:3px 10px;border-radius:50px;font-family:'Space Mono',monospace}
+
+/* EXP CARD */
+.ec{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;
+  margin-bottom:14px;position:relative;overflow:hidden;transition:border-color .25s,transform .2s}
+.ec:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
+.abar{position:absolute;top:0;left:0;right:0;height:3px;border-radius:18px 18px 0 0}
+.bar-g{background:linear-gradient(90deg,var(--green),var(--blue))}
+.bar-b{background:linear-gradient(90deg,var(--blue),var(--purple))}
+.bar-y{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.bar-p{background:linear-gradient(90deg,var(--pink),var(--purple))}
+.eh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-top:6px}
+.ec-co{font-size:16px;font-weight:900;color:#fff}
+.ec-ro{font-size:12px;font-weight:700;color:var(--green);margin-top:3px;font-family:'Space Mono',monospace}
+.em{text-align:right}
+.edate{font-size:11px;color:var(--muted);font-family:'Space Mono',monospace}
+.bcur{display:inline-block;margin-top:5px;background:rgba(107,203,119,0.15);
+  border:1px solid rgba(107,203,119,0.4);color:var(--green);font-size:10px;font-weight:800;
+  padding:2px 9px;border-radius:50px;font-family:'Space Mono',monospace;letter-spacing:1px}
+.bfree{background:rgba(255,217,61,0.15);border-color:rgba(255,217,61,0.4);color:var(--yellow)}
+.edesc{margin-top:12px;font-size:13px;color:rgba(240,240,255,0.65);line-height:1.75}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.pt{background:var(--card2);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:11px;transition:border-color .2s}
+.pt:hover{border-color:rgba(255,255,255,0.15)}
+.pn{font-size:12px;font-weight:800;color:var(--purple);margin-bottom:3px}
+.pd{font-size:11px;color:var(--muted);line-height:1.6}
+
+/* GAMES SECTION */
+.gs{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;margin-top:8px}
+.gg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px;margin-top:4px}
+.gc{background:var(--card2);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:12px;
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:8px;
+  transition:transform .2s,border-color .2s,box-shadow .2s}
+.gc:not(.nol):hover{transform:translateY(-4px);border-color:rgba(255,217,61,0.4);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.gi{width:64px;height:64px;border-radius:14px;overflow:hidden;background:var(--card);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.gi img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.gip{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:26px;border-radius:14px}
+.gn{font-size:11px;font-weight:800;color:var(--text);text-align:center;line-height:1.4}
+.gst{font-size:10px;color:var(--muted);font-family:'Space Mono',monospace;text-align:center}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .5s ease both}
+.body-grid{animation:fadeUp .5s .15s ease both}
+.gs{animation:fadeUp .5s .3s ease both}
+
+@media(max-width:700px){
+  .page{padding:24px 16px}
+  .hero{grid-template-columns:1fr;padding:28px 24px}
+  .hero-right{text-align:left;align-items:flex-start}
+  .chip{justify-content:flex-start}
+  .body-grid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:1fr}
+  .gg{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <div>
+    <div class="eyebrow">&#9679; Open to opportunities</div>
+    <h1 class="hero-name">TALHA <span>YOUSAF</span></h1>
+    <div class="hero-badge">&#127918; Unity Developer</div>
+    <p class="hero-bio">Game developer with 3+ years building 2D/3D mobile games, interactive experiences, RTS systems & playable ads. Internship → studio → freelance — multiple live titles shipped.</p>
+  </div>
+  <div class="hero-right">
+    <a class="chip" href="tel:03492721788">📞 03492721788</a>
+    <a class="chip" href="mailto:talhayousaf140@gmail.com">✉ talhayousaf140@gmail.com</a>
+    <span class="chip">📍 Sialkot, Pakistan</span>
+  </div>
+</header>
+
+<div class="body-grid">
+  <aside>
+    <div class="sc">
+      <div class="st"><span class="d" style="background:var(--green)"></span>Skills</div>
+      <div class="sk-cat">
+        <div class="sk-lbl">Engine & Tools</div>
+        <div class="sk-wrap">
+          <span class="pill pg">Unity 3D</span>
+          <span class="pill pg">Level Design</span>
+          <span class="pill pb">Autodesk Maya</span>
+          <span class="pill pb">2D / 3D</span>
+        </div>
+      </div>
+      <div class="sk-cat">
+        <div class="sk-lbl">Programming</div>
+        <div class="sk-wrap">
+          <span class="pill pp">C#</span>
+          <span class="pill pp">C++</span>
+          <span class="pill pp">Java</span>
+          <span class="pill po">Git</span>
+        </div>
+      </div>
+      <div class="sk-cat">
+        <div class="sk-lbl">Specialities</div>
+        <div class="sk-wrap">
+          <span class="pill pk">Playable Ads</span>
+          <span class="pill pk">Mobile Games</span>
+          <span class="pill po">RTS Systems</span>
+          <span class="pill po">Puzzle Games</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sc">
+      <div class="st"><span class="d" style="background:var(--blue)"></span>Education</div>
+      <div class="edu">
+        <div class="edu-school">University of Sialkot</div>
+        <div class="edu-deg">BS Computer Science</div>
+        <div class="edu-date">Oct 2019 – Jul 2023</div>
+        <div class="gpa">GPA 3.42 / 4.0</div>
+      </div>
+      <div class="edu">
+        <div class="edu-school">Punjab College of Science</div>
+        <div class="edu-deg">Pre-Engineering</div>
+        <div class="edu-date">Sep 2017 – Sep 2019</div>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="st" style="margin-bottom:14px"><span class="d" style="background:var(--yellow)"></span>Experience</div>
+
+    <div class="ec">
+      <div class="abar bar-y"></div>
+      <div class="eh">
+        <div>
+          <div class="ec-co">Hong Kong Joy Genesis Co. Ltd</div>
+          <div class="ec-ro" style="color:var(--yellow)">Freelance · Playable Ad Developer</div>
+        </div>
+        <div class="em">
+          <div class="edate">Jan 2026 – May 2026</div>
+          <div class="bcur bfree">● Closed</div>
+        </div>
+      </div>
+      <p class="edesc">Developing high-converting interactive playable ads for mobile games — full lifecycle from concept to delivery, optimised for performance across Android & iOS.</p>
+    </div>
+
+    <div class="ec">
+      <div class="abar bar-g"></div>
+      <div class="eh">
+        <div>
+          <div class="ec-co">AiriDev</div>
+          <div class="ec-ro">Unity Developer</div>
+        </div>
+        <div class="em">
+          <div class="edate">Nov 2023 – Present</div>
+          <div class="bcur">● Current</div>
+        </div>
+      </div>
+      <div class="pgrid">
+        <div class="pt"><div class="pn">Draw To Home</div><div class="pd">2D puzzle — draw a path to guide pets safely home.</div></div>
+        <div class="pt"><div class="pn">Bubble Box Matching</div><div class="pd">3D vase-flower sequential sorting game.</div></div>
+        <div class="pt"><div class="pn">Running Cat</div><div class="pd">3D endless runner with obstacle avoidance.</div></div>
+        <div class="pt"><div class="pn">Farm Bubble Shooter</div><div class="pd">2D shooter — free trapped birds from balls.</div></div>
+        <div class="pt"><div class="pn">Chief Delight</div><div class="pd">2D cooking game — deliver customer orders.</div></div>
+        <div class="pt"><div class="pn">Bot Balancer</div><div class="pd">3D balance-robot matching game.</div></div>
+        <div class="pt"><div class="pn">Onet Tile Match</div><div class="pd">2D picture-pair puzzle tile game.</div></div>
+        <div class="pt"><div class="pn">Mini Games Pack</div><div class="pd">Five Fun Realms · Mad Mix Madness · Power Play 5</div></div>
+      </div>
+    </div>
+
+    <div class="ec">
+      <div class="abar bar-b"></div>
+      <div class="eh">
+        <div>
+          <div class="ec-co">UFD Studio</div>
+          <div class="ec-ro" style="color:var(--blue)">Unity Developer</div>
+        </div>
+        <div class="em"><div class="edate">Dec 2024 – May 2025</div></div>
+      </div>
+      <p class="edesc"><strong style="color:var(--blue)">Battle Dawn RTS</strong> — Army-themed RTS clone inspired by Whiteout Survival. Built grid-based building placement, unit selection system, and marching & combat mechanics over 5 months.</p>
+    </div>
+
+    <div class="ec">
+      <div class="abar bar-p"></div>
+      <div class="eh">
+        <div>
+          <div class="ec-co">GlizenSoftz</div>
+          <div class="ec-ro" style="color:var(--pink)">Junior Unity Developer · Internship</div>
+        </div>
+        <div class="em"><div class="edate">Aug 2022 – Nov 2023</div></div>
+      </div>
+      <p class="edesc"><strong style="color:var(--pink)">3D Virtual Tour (Final Year Project)</strong> — Game-based virtual tour of the University of Sialkot. Players explore spaces, interact with objects, and uncover hidden information. Also delivered level design for Bike Stunt Evolution 2D & Bike Stunt Rising.</p>
+    </div>
+  </main>
+</div>
+
+<!-- PUBLISHED GAMES -->
+<div class="gs">
+  <div class="st"><span class="d" style="background:var(--orange)"></span>Published Games</div>
+  <div class="gg">
+
+    <a class="gc" href="https://play.google.com/store/apps/details?id=com.BSP.BikeStuntParking" target="_blank">
+      <div class="gi"><img src="https://play-lh.googleusercontent.com/uE3e3OuvnBMVXdKNZ3MsB_BjxYmJvSNn1NIMl_G8UWFHk7YGEJuQfN24ZxFKoiHLVA=s180" alt="Stunt Parking" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'gip\' style=\'background:#1a2040\'>🏍️</div>'"></div>
+      <div class="gn">Ultimate Stunt Parking 3D</div>
+      <div class="gst">▶ Google Play</div>
+    </a>
+
+    <a class="gc" href="https://play.google.com/store/apps/details?id=com.GDB.GoldBlasterDigger" target="_blank">
+      <div class="gi"><img src="https://play-lh.googleusercontent.com/fqmzHMhjKAOQ5TbQP6vmcG8j5BVNKMdJHAfHXbj3FP9ULDiV1Ky0VqRcfYAEknzR8Q=s180" alt="Gold Digger" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'gip\' style=\'background:#2a1a00\'>⛏️</div>'"></div>
+      <div class="gn">Gold Digger Blaster</div>
+      <div class="gst">▶ Google Play</div>
+    </a>
+
+    <a class="gc" href="https://play.google.com/store/apps/details?id=com.MTB.MergetheBoo" target="_blank">
+      <div class="gi"><img src="https://play-lh.googleusercontent.com/P0P8e4q7LhMIPbZDyVOMU0JOlMqAPKYkB3j4jMmq7MTlqDqZfj7KJlG8nBdvdH2yNA=s180" alt="Merge Boo" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'gip\' style=\'background:#1a0030\'>👻</div>'"></div>
+      <div class="gn">Merge The BOO!</div>
+      <div class="gst">▶ Google Play</div>
+    </a>
+
+    <a class="gc" href="https://play.google.com/store/apps/details?id=com.BHS.BoxHopSafari" target="_blank">
+      <div class="gi"><img src="https://play-lh.googleusercontent.com/1IhKHGnE8UaGo2O0K2fJRRPQ55qg-lTf1vYXXzB5JrXL-xFlSJtnBXVJyXUaS5d7Mg=s180" alt="Box Hop" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'gip\' style=\'background:#002a10\'>🐐</div>'"></div>
+      <div class="gn">Box Hop Safari</div>
+      <div class="gst">▶ Google Play</div>
+    </a>
+
+    <a class="gc" href="https://www.linkedin.com/posts/talha-yousaf-3b297b284_game-indiegameproject-stealthgame-activity-7386070558372933632--VQN?utm_source=share&utm_medium=member_desktop" target="_blank">
+      <div class="gi"><div class="gip" style="background:#0a1a20">🕵️</div></div>
+      <div class="gn">Thief Rush Silent Escape</div>
+      <div class="gst">↗ LinkedIn</div>
+    </a>
+
+    <a class="gc" href="https://www.linkedin.com/posts/talha-yousaf-3b297b284_im-currently-working-on-a-role-playing-decision-making-activity-7398649276685352960-qgKN?utm_source=share&utm_medium=member_desktop" target="_blank">
+      <div class="gi"><div class="gip" style="background:#1a1000">🗺️</div></div>
+      <div class="gn">Conqueror Countries</div>
+      <div class="gst">↗ LinkedIn</div>
+    </a>
+
+    <div class="gc nol">
+      <div class="gi"><div class="gip" style="background:#1a001a">🦸</div></div>
+      <div class="gn">Rebound Heroes</div>
+      <div class="gst">Coming soon</div>
+    </div>
+
+    <div class="gc nol">
+      <div class="gi"><div class="gip" style="background:#001a20">🎮</div></div>
+      <div class="gn">Five Fun Realms</div>
+      <div class="gst">Mini Games</div>
+    </div>
+
+    <div class="gc nol">
+      <div class="gi"><div class="gip" style="background:#1a0a00">🎲</div></div>
+      <div class="gn">Mad Mix Madness</div>
+      <div class="gst">Mini Games</div>
+    </div>
+
+    <div class="gc nol">
+      <div class="gi"><div class="gip" style="background:#0a1a00">⚡</div></div>
+      <div class="gn">Power Play 5</div>
+      <div class="gst">Mini Games</div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+</body>
+</html>
